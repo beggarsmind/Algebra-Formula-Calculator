@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algebra Formula Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo and Title -->
+          <div class="flex items-center space-x-3">
+            <span
+              class="bg-white-800/40 rounded-full p-1 flex items-center justify-center"
+            >
+              <img
+                src="/images/Logo2.png"
+                alt="Logo"
+                class="h-8 w-8 object-contain"
+              />
+            </span>
+            <h1 class="text-xl font-bold text-gray-900">
+              Algebra Formula Calculator
+            </h1>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="/index.html"
+              class="text-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >Home</a
+            >
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-700 hover:text-indigo-600 focus:outline-none focus:text-indigo-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <a
+              href="/index.html"
+              class="text-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
+              >Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Calculator Card -->
+      <div
+        class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
+      >
+        <!-- Card Header -->
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+          <h2 class="text-2xl font-bold text-white mb-2">
+            Power of a Power Rule
+          </h2>
+          <p class="text-indigo-100 text-lg">
+            (a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup>
+          </p>
+        </div>
+
+        <!-- Calculator Form -->
+        <div class="p-8">
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="space-y-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                Enter Values
+              </h3>
+
+              <!-- Base Input -->
+              <div>
+                <label
+                  for="base"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Base (a)</label
+                >
+                <input
+                  type="number"
+                  id="base"
+                  step="any"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-lg"
+                  placeholder="Enter base value"
+                />
+              </div>
+
+              <!-- First Exponent Input -->
+              <div>
+                <label
+                  for="exponent1"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >First Exponent (m)</label
+                >
+                <input
+                  type="number"
+                  id="exponent1"
+                  step="any"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-lg"
+                  placeholder="Enter first exponent"
+                />
+              </div>
+
+              <!-- Second Exponent Input -->
+              <div>
+                <label
+                  for="exponent2"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Second Exponent (n)</label
+                >
+                <input
+                  type="number"
+                  id="exponent2"
+                  step="any"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-lg"
+                  placeholder="Enter second exponent"
+                />
+              </div>
+
+              <!-- Calculate Button -->
+              <button
+                id="calculate-btn"
+                class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all transform hover:scale-105"
+              >
+                Calculate Result
+              </button>
+            </div>
+
+            <!-- Result Section -->
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                Calculation Steps
+              </h3>
+
+              <div id="result-container" class="space-y-4 text-gray-600">
+                <p class="text-center text-gray-500 italic">
+                  Enter values and click calculate to see the result
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formula Explanation -->
+      <div
+        class="mt-8 bg-white rounded-xl shadow-lg border border-gray-200 p-6"
+      >
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">
+          Formula Explanation
+        </h3>
+        <p class="text-gray-600 leading-relaxed">
+          When raising a power to another power, you multiply the exponents
+          together. This fundamental rule of exponents states that
+          (a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup>. For example,
+          (2<sup>3</sup>)<sup>4</sup> = 2<sup>3×4</sup> = 2<sup>12</sup> = 4096.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Calculator functionality
+      const calculateBtn = document.getElementById('calculate-btn');
+      const baseAInput = document.getElementById('base');
+      const baseBInput = document.getElementById('exponent1');
+      const exponentInput = document.getElementById('exponent2');
+      const resultContainer = document.getElementById('result-container');
+
+      function calculateResult() {
+        const base = parseFloat(baseAInput.value);
+        const exponent1 = parseFloat(baseBInput.value);
+        const exponent2 = parseFloat(exponentInput.value);
+
+        // Check if any field is empty
+        if (
+          baseAInput.value === '' ||
+          baseBInput.value === '' ||
+          exponentInput.value === ''
+        ) {
+          resultContainer.innerHTML = `
+                    <p class="text-center text-gray-500 italic">Enter values in all fields to see the calculation</p>
+                `;
+          return;
+        }
+
+        // Validate inputs
+        if (isNaN(base) || isNaN(exponent1) || isNaN(exponent2)) {
+          resultContainer.innerHTML = `
+                    <div class="bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-lg">
+                        <p class="font-medium">Error: Please enter valid numbers for all fields.</p>
+                    </div>
+                `;
+          return;
+        }
+
+        // Calculate results
+        const innerPower = Math.pow(base, exponent1);
+        const leftSide = Math.pow(innerPower, exponent2);
+        const multipliedExponents = exponent1 * exponent2;
+        const rightSide = Math.pow(base, multipliedExponents);
+
+        // Format numbers for display
+        const formatNumber = (num) => {
+          if (Number.isInteger(num)) return num.toString();
+          return num.toFixed(6).replace(/\.?0+$/, '');
+        };
+
+        // Display step-by-step calculation
+        resultContainer.innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">Given:</h4>
+                        <p class="text-blue-700">Base (a) = ${formatNumber(
+                          base
+                        )}</p>
+                        <p class="text-blue-700">First exponent (m) = ${formatNumber(
+                          exponent1
+                        )}</p>
+                        <p class="text-blue-700">Second exponent (n) = ${formatNumber(
+                          exponent2
+                        )}</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-green-800 mb-3">Step-by-step calculation:</h4>
+                        <div class="space-y-2">
+                            <p class="text-green-700"><span class="font-medium">Step 1:</span> Start with the original expression</p>
+                            <p class="text-green-700 ml-4">(${formatNumber(
+                              base
+                            )}<sup>${formatNumber(
+          exponent1
+        )}</sup>)<sup>${formatNumber(exponent2)}</sup></p>
+                            
+                            <p class="text-green-700"><span class="font-medium">Step 2:</span> Apply the power of a power rule</p>
+                            <p class="text-green-700 ml-4">= ${formatNumber(
+                              base
+                            )}<sup>${formatNumber(exponent1)} × ${formatNumber(
+          exponent2
+        )}</sup></p>
+                            
+                            <p class="text-green-700"><span class="font-medium">Step 3:</span> Multiply the exponents</p>
+                            <p class="text-green-700 ml-4">${formatNumber(
+                              exponent1
+                            )} × ${formatNumber(exponent2)} = ${formatNumber(
+          multipliedExponents
+        )}</p>
+                            
+                            <p class="text-green-700"><span class="font-medium">Step 4:</span> Substitute the multiplied exponent</p>
+                            <p class="text-green-700 ml-4">= ${formatNumber(
+                              base
+                            )}<sup>${formatNumber(
+          multipliedExponents
+        )}</sup></p>
+                            
+                            <p class="text-green-700"><span class="font-medium">Step 5:</span> Calculate the final result</p>
+                            <p class="text-green-700 ml-4 font-bold text-lg">= ${formatNumber(
+                              rightSide
+                            )}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-orange-800 mb-2">Alternative calculation:</h4>
+                        <div class="space-y-1">
+                            <p class="text-orange-700">First calculate ${formatNumber(
+                              base
+                            )}<sup>${formatNumber(
+          exponent1
+        )}</sup> = ${formatNumber(innerPower)}</p>
+                            <p class="text-orange-700">Then calculate (${formatNumber(
+                              innerPower
+                            )})<sup>${formatNumber(
+          exponent2
+        )}</sup> = ${formatNumber(leftSide)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-purple-800 mb-2">Verification:</h4>
+                        <p class="text-purple-700">Method 1: ${formatNumber(
+                          leftSide
+                        )}</p>
+                        <p class="text-purple-700">Method 2: ${formatNumber(
+                          rightSide
+                        )}</p>
+                        <p class="text-purple-700 font-bold">${
+                          Math.abs(leftSide - rightSide) < 0.000001
+                            ? '✓ Both methods give the same result!'
+                            : '⚠ Check your calculations'
+                        }</p>
+                    </div>
+                </div>
+            `;
+      }
+
+      // Auto-calculate on input change
+      baseAInput.addEventListener('input', calculateResult);
+      baseBInput.addEventListener('input', calculateResult);
+      exponentInput.addEventListener('input', calculateResult);
+
+      // Keep the button functionality for manual calculation
+      calculateBtn.addEventListener('click', calculateResult);
+
+      // Allow Enter key to calculate
+      [baseAInput, baseBInput, exponentInput].forEach((input) => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            calculateBtn.click();
+          }
+        });
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement('script');
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9673e65453689365',t:'MTc1Mzg2ODQ4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName('head')[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement('iframe');
+          a.height = 1;
+          a.width = 1;
+          a.style.position = 'absolute';
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = 'none';
+          a.style.visibility = 'hidden';
+          document.body.appendChild(a);
+          if ('loading' !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener('DOMContentLoaded', c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              'loading' !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

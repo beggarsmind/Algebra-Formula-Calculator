@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formula Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f4f8;
+      }
+      .formula {
+        font-family: 'Cambria Math', serif;
+      }
+      .step-highlight {
+        background-color: #e3f2fd;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        display: inline-block;
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #3b82f6;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .active::after {
+        width: 100%;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+      .math-step {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        border-left: 4px solid #3b82f6;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+      <div class="container mx-auto px-4 py-3">
+        <div
+          class="flex flex-col md:flex-row md:justify-between md:items-center"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span
+                class="bg-white-800/40 rounded-full p-1 flex items-center justify-center"
+              >
+                <img
+                  src="/images/Logo2.png"
+                  alt="Logo"
+                  class="h-8 w-8 object-contain"
+                />
+              </span>
+              <h1 class="text-xl font-bold text-gray-800">
+                Algebra Formula Calculator
+              </h1>
+            </div>
+            <button id="menu-toggle" class="md:hidden focus:outline-none">
+              <svg
+                class="h-6 w-6 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            id="menu"
+            class="hidden md:flex flex-col md:flex-row md:items-center mt-3 md:mt-0 space-y-2 md:space-y-0 md:space-x-6"
+          >
+            <a
+              href="/index.html"
+              class="nav-link active text-blue-600 font-medium"
+              >Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+      <div
+        class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden"
+      >
+        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
+          <h2 class="text-xl md:text-2xl font-bold text-white formula">
+            (a - b)⁴ = a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴
+          </h2>
+          <p class="text-blue-100 mt-1">Fourth Power of Difference Identity</p>
+        </div>
+
+        <div class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="input-container">
+              <label
+                for="a"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Enter a:</label
+              >
+              <input
+                type="number"
+                id="a"
+                placeholder="Enter value for a"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              />
+            </div>
+
+            <div class="input-container">
+              <label
+                for="b"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Enter b:</label
+              >
+              <input
+                type="number"
+                id="b"
+                placeholder="Enter value for b"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              />
+            </div>
+          </div>
+
+          <button
+            onclick="calculate()"
+            class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Calculate
+          </button>
+
+          <!-- Final Result Section (Initially Hidden) -->
+          <div
+            id="final-result"
+            class="mt-6 p-5 bg-gray-50 rounded-md border border-gray-200 hidden"
+          ></div>
+
+          <div id="calculation-process" class="mt-6 hidden">
+            <div class="bg-blue-50 p-4 rounded-md mb-6 border border-blue-100">
+              <h3 class="text-lg font-semibold text-blue-800 mb-2">
+                Mathematical Proof
+              </h3>
+              <p class="text-gray-700">
+                We'll verify the identity (a - b)⁴ = a⁴ - 4a³b + 6a²b² - 4ab³ +
+                b⁴ using your values.
+              </p>
+            </div>
+
+            <div id="calculation-steps" class="space-y-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Toggle mobile menu
+      document
+        .getElementById('menu-toggle')
+        .addEventListener('click', function () {
+          const menu = document.getElementById('menu');
+          menu.classList.toggle('hidden');
+        });
+
+      // JavaScript function to calculate (a - b)⁴ = a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴
+      function calculate() {
+        // Get input values
+        let a = parseFloat(document.getElementById('a').value);
+        let b = parseFloat(document.getElementById('b').value);
+
+        const calculationProcess = document.getElementById(
+          'calculation-process'
+        );
+        const calculationSteps = document.getElementById('calculation-steps');
+        const finalResult = document.getElementById('final-result');
+
+        calculationProcess.classList.add('hidden');
+        finalResult.classList.add('hidden');
+
+        if (isNaN(a) || isNaN(b)) {
+          finalResult.innerHTML =
+            '<div class="text-red-500 font-medium">Please enter valid numbers for both a and b.</div>';
+          finalResult.classList.remove('hidden');
+          return;
+        }
+
+        // Calculate all the values we'll need
+        let aToFour = Math.pow(a, 4);
+        let bToFour = Math.pow(b, 4);
+
+        let aCubed = Math.pow(a, 3);
+        let bCubed = Math.pow(b, 3);
+
+        let aSquared = Math.pow(a, 2);
+        let bSquared = Math.pow(b, 2);
+
+        let fourACubedB = 4 * aCubed * b;
+        let sixASquaredBSquared = 6 * aSquared * bSquared;
+        let fourABCubed = 4 * a * bCubed;
+
+        let aMinusB = a - b;
+        let aMinusBToFour = Math.pow(aMinusB, 4);
+
+        // Correct logic: positive sign for 6a²b²
+        let rhs =
+          aToFour - fourACubedB + sixASquaredBSquared - fourABCubed + bToFour;
+
+        // Display the final result first
+        finalResult.innerHTML = `
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Final Result</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-md border-l-4 border-blue-500 shadow-sm">
+              <p class="text-sm text-gray-500 mb-1">Left-hand side</p>
+              <p class="formula text-lg font-medium">(a - b)⁴ = ${aMinusBToFour}</p>
+            </div>
+            <div class="bg-white p-4 rounded-md border-l-4 border-indigo-500 shadow-sm">
+              <p class="text-sm text-gray-500 mb-1">Right-hand side</p>
+              <p class="formula text-lg font-medium">a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴ = ${rhs}</p>
+            </div>
+          </div>
+          <div class="bg-green-50 p-4 rounded-md border border-green-200 mt-4">
+            <p class="text-green-700 flex items-center">
+              <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="font-medium">Verification:</span> 
+              ${
+                Math.abs(aMinusBToFour - rhs) < 0.0001
+                  ? 'Both sides are equal, confirming the identity!'
+                  : 'There might be a rounding error in the calculation.'
+              }
+            </p>
+          </div>
+        `;
+        finalResult.classList.remove('hidden');
+
+        // Create the step-by-step calculation
+        calculationSteps.innerHTML = `
+        <!-- Step 1: Given Values -->
+        <div class="math-step bg-white shadow-sm">
+          <h4 class="text-md font-semibold text-blue-700 mb-2">Given Values</h4>
+          <div class="pl-4 border-l-2 border-blue-200">
+            <p class="mb-1">a = ${a}</p>
+            <p>b = ${b}</p>
+          </div>
+        </div>
+        
+        <!-- Step 2: Left-Hand Side Calculation -->
+        <div class="math-step bg-white shadow-sm">
+          <h4 class="text-md font-semibold text-blue-700 mb-2">Left-Hand Side: (a - b)⁴</h4>
+          <div class="pl-4 border-l-2 border-blue-200 space-y-2">
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 2.1: Calculate (a - b)</span>
+              <div class="flex items-center">
+                <span class="formula">(a - b) = ${a} - ${b} = ${aMinusB}</span>
+                <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Operations inside parentheses</span>
+              </div>
+            </div>
+            
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 2.2: Raise to the fourth power</span>
+              <div class="flex items-center">
+                <span class="formula">(a - b)⁴ = ${aMinusB}⁴ = ${aMinusBToFour}</span>
+                <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents after parentheses</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 3: Right-Hand Side Calculation (BODMAS Breakdown) -->
+        <div class="math-step bg-white shadow-sm">
+          <h4 class="text-md font-semibold text-blue-700 mb-2">Right-Hand Side: a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴ (BODMAS Steps)</h4>
+          <div class="pl-4 border-l-2 border-blue-200 space-y-2">
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 3.1: Parentheses (none needed)</span>
+              <div class="flex items-center">
+                <span class="formula">No parentheses in this expansion, so move to exponents.</span>
+                <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Parentheses</span>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 3.2: Exponents</span>
+              <div class="flex flex-col">
+                <div class="flex items-center">
+                  <span class="formula">a⁴ = ${a}⁴ = ${aToFour}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">a³ = ${a}³ = ${aCubed}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">a² = ${a}² = ${aSquared}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">b³ = ${b}³ = ${bCubed}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">b² = ${b}² = ${bSquared}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">b⁴ = ${b}⁴ = ${bToFour}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Exponents</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 3.3: Multiplication</span>
+              <div class="flex flex-col">
+                <div class="flex items-center">
+                  <span class="formula">4a³b = 4 × ${aCubed} × ${b} = ${fourACubedB}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Multiplication</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">6a²b² = (6 × ${aSquared}) = ${
+          6 * aSquared
+        }, then × ${bSquared} = ${sixASquaredBSquared}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Multiplication (first two, then by third)</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="formula">4ab³ = 4 × ${a} × ${bCubed} = ${fourABCubed}</span>
+                  <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Multiplication</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-1">
+              <span class="text-sm text-gray-500">Step 3.4: Addition/Subtraction</span>
+              <div class="flex items-center">
+                <span class="formula">a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴ = ${aToFour} - ${fourACubedB} + ${sixASquaredBSquared} - ${fourABCubed} + ${bToFour} = ${rhs}</span>
+                <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">BODMAS: Addition/Subtraction</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 4: Binomial Theorem Explanation -->
+        <div class="math-step bg-white shadow-sm">
+          <h4 class="text-md font-semibold text-blue-700 mb-2">Binomial Theorem Explanation</h4>
+          <div class="pl-4 border-l-2 border-blue-200 space-y-2">
+            <p class="text-gray-700">The formula (a - b)⁴ = a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴ is a special case of the binomial theorem.</p>
+            
+            <p class="formula mt-3">The binomial theorem states that:</p>
+            <p class="formula pl-4">(a + b)ⁿ = Σ(k=0 to n) (n choose k) aⁿ⁻ᵏbᵏ</p>
+            
+            <p class="formula mt-3">For n = 4, this gives us:</p>
+            <p class="formula pl-4">(a - b)⁴ = (4 choose 0)a⁴b⁰ - (4 choose 1)a³b¹ + (4 choose 2)a²b² - (4 choose 3)a¹b³ + (4 choose 4)a⁰b⁴</p>
+            
+            <p class="formula mt-3">The binomial coefficients (4 choose k) are:</p>
+            <div class="grid grid-cols-5 gap-2 mt-2">
+              <div class="bg-blue-50 p-2 rounded text-center">
+                <p class="text-sm text-gray-500">(4 choose 0)</p>
+                <p class="font-medium">= 1</p>
+              </div>
+              <div class="bg-blue-50 p-2 rounded text-center">
+                <p class="text-sm text-gray-500">(4 choose 1)</p>
+                <p class="font-medium">= 4</p>
+              </div>
+              <div class="bg-blue-50 p-2 rounded text-center">
+                <p class="text-sm text-gray-500">(4 choose 2)</p>
+                <p class="font-medium">= 6</p>
+              </div>
+              <div class="bg-blue-50 p-2 rounded text-center">
+                <p class="text-sm text-gray-500">(4 choose 3)</p>
+                <p class="font-medium">= 4</p>
+              </div>
+              <div class="bg-blue-50 p-2 rounded text-center">
+                <p class="text-sm text-gray-500">(4 choose 4)</p>
+                <p class="font-medium">= 1</p>
+              </div>
+            </div>
+            
+            <p class="formula mt-3">Therefore:</p>
+            <p class="formula pl-4">(a - b)⁴ = 1·a⁴·b⁰ - 4·a³·b¹ + 6·a²·b² - 4·a¹·b³ + 1·a⁰·b⁴</p>
+            <p class="formula pl-4">= a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴</p>
+            
+            <p class="text-sm text-gray-600 mt-3 italic">Note: b⁰ = 1 and a⁰ = 1 for any non-zero a and b.</p>
+          </div>
+        </div>
+      `;
+
+        calculationProcess.classList.remove('hidden');
+      }
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement('script');
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96449a8ee5989379',t:'MTc1MzM3MjU0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName('head')[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement('iframe');
+          a.height = 1;
+          a.width = 1;
+          a.style.position = 'absolute';
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = 'none';
+          a.style.visibility = 'hidden';
+          document.body.appendChild(a);
+          if ('loading' !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener('DOMContentLoaded', c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              'loading' !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
