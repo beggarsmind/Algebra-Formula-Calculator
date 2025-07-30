@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Algebraic Formulas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8fafc;
+      }
+      .formula-btn {
+        transition: all 0.3s ease;
+      }
+      .formula-btn:hover {
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <span
+            class="bg-indigo-800/40 rounded-full p-1 flex items-center justify-center"
+          >
+            <img
+              src="images/Logo2.png"
+              alt="Logo"
+              class="h-8 w-8 object-contain"
+            />
+          </span>
+          <h1 class="text-xl font-bold">Algebra Formula Calculator</h1>
+        </div>
+        <nav class="flex gap-2">
+          <a
+            href="index.html"
+            class="bg-white text-indigo-700 px-4 py-2 rounded-md font-medium hover:bg-indigo-50 transition-colors flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              />
+            </svg>
+            Home
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Formulas Section -->
+    <section id="formulas" class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          Algebraic Formulas
+        </h2>
+        <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+          Select any formula to calculate values and see detailed explanations
+        </p>
+
+        <!-- Formula Grid -->
+        <div class="formula-grid grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Formula 1 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(1)"
+            type="button"
+            aria-label="Difference of Squares: (a² - b²) = (a - b)(a + b)"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Difference of Squares</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a² - b²) = (a - b)(a + b)
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 2 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(2)"
+            type="button"
+            aria-label="Perfect Square: (a + b)² = a² + 2ab + b²"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Perfect Square</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a + b)² = a² + 2ab + b²
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 3 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(3)"
+            type="button"
+            aria-label="Sum of Squares: a² + b² = (a + b)² - 2ab"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Sum of Squares</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  a² + b² = (a + b)² - 2ab
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 4 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(4)"
+            type="button"
+            aria-label="Perfect Square: (a - b)² = a² - 2ab + b²"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Perfect Square</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a - b)² = a² - 2ab + b²
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 5 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(5)"
+            type="button"
+            aria-label="Trinomial Square: (a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Trinomial Square</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a + b + c)² = <br />a² + b² + c² + 2ab + 2bc + 2ca
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 6 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(6)"
+            type="button"
+            aria-label="Cube Formula: (a + b)³ = a³ + 3a²b + 3ab² + b³"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Cube Formula</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a + b)³ = <br />
+                  a³ + 3a²b + 3ab² + b³
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 7 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(7)"
+            type="button"
+            aria-label="Cube Formula: (a - b)³ = a³ - 3a²b + 3ab² - b³"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Cube Formula</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a - b)³ = a³ - 3a²b + 3ab² - b³
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 8 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(8)"
+            type="button"
+            aria-label="Difference of Cubes: a³ - b³ = (a - b)(a² + ab + b²)"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Difference of Cubes</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  a³ - b³ = (a - b)(a² + ab + b²)
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 9 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(9)"
+            type="button"
+            aria-label="Sum of Cubes: a³ + b³ = (a + b)(a² - ab + b²)"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Sum of Cubes</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  a³ + b³ = (a + b)(a² - ab + b²)
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 10 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(10)"
+            type="button"
+            aria-label="Binomial Expansion: (a + b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Binomial Expansion</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a + b)⁴ = <br />a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴
+                </div>
+              </div>
+            </div>
+          </button>
+          <!-- Formula 11 -->
+          <button
+            class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            onclick="formula(11)"
+            type="button"
+            aria-label="Binomial Expansion: (a - b)⁴ = a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴"
+          >
+            <div class="bg-indigo-600 text-white py-2 px-4 rounded-t-xl">
+              <span class="text-xs font-medium uppercase tracking-wider"
+                >Binomial Expansion</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-medium text-gray-800">
+                  (a - b)⁴ =<br />
+                  a⁴ - 4a³b + 6a²b² - 4ab³ + b⁴
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+        <!-- Exponent Rules Section -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold text-green-700 mb-6 text-center">
+            Exponent Rules
+          </h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <!-- Formula 12 -->
+            <button
+              class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-green-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-green-400"
+              onclick="formula(12)"
+              type="button"
+              aria-label="Exponent Rule: (aᵐ)(aⁿ) = aᵐ⁺ⁿ"
+            >
+              <div class="bg-green-600 text-white py-2 px-4 rounded-t-xl">
+                <span class="text-sm font-semibold uppercase tracking-wider"
+                  >Exponent Rule</span
+                >
+              </div>
+              <div class="p-7 flex-1 flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-4">
+                  <div class="text-2xl font-bold text-gray-800">
+                    (aᵐ)(aⁿ) = aᵐ⁺ⁿ
+                  </div>
+                </div>
+              </div>
+            </button>
+            <!-- Formula 13 -->
+            <button
+              class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-green-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-green-400"
+              onclick="formula(13)"
+              type="button"
+              aria-label="Exponent Rule: (ab)ᵐ = aᵐbᵐ"
+            >
+              <div class="bg-green-600 text-white py-2 px-4 rounded-t-xl">
+                <span class="text-sm font-semibold uppercase tracking-wider"
+                  >Exponent Rule</span
+                >
+              </div>
+              <div class="p-7 flex-1 flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-4">
+                  <div class="text-2xl font-bold text-gray-800">
+                    (ab)ᵐ = aᵐbᵐ
+                  </div>
+                </div>
+              </div>
+            </button>
+            <!-- Formula 14 -->
+            <button
+              class="formula-card bento-btn bg-white rounded-xl shadow-md hover:shadow-xl transition-all border-2 border-transparent hover:border-green-500 flex flex-col items-stretch text-left focus:outline-none focus:ring-2 focus:ring-green-400"
+              onclick="formula(14)"
+              type="button"
+              aria-label="Exponent Rule: (aᵐ)ⁿ = aᵐⁿ"
+            >
+              <div class="bg-green-600 text-white py-2 px-4 rounded-t-xl">
+                <span class="text-sm font-semibold uppercase tracking-wider"
+                  >Exponent Rule</span
+                >
+              </div>
+              <div class="p-7 flex-1 flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-4">
+                  <div class="text-2xl font-bold text-gray-800">
+                    (aᵐ)ⁿ = aᵐⁿ
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function formula(formulaNumber) {
+        // Redirect to a specific HTML page based on the formula number
+        window.location.href = `calculations/formula${formulaNumber}.html`;
+      }
+    </script>
+  </body>
+</html>
